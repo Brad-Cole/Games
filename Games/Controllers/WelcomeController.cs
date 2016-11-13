@@ -9,17 +9,20 @@ namespace Games.Controllers
     public class WelcomeController : Controller
     {
         // GET: Welcome
-        public string Index()
+        public ActionResult Index()
         {
-            return "This is my <b>welcome</b> action...";
+            return View();
         }
 
         // 
         // GET: /Welcome/Hello/ 
 
-        public string Hello(string name, int numTimes = 1)
+        public ActionResult Welcome(string name, int numTimes = 1)
         {
-            return HttpUtility.HtmlEncode("Hello " + name + ", NumTimes is: " + numTimes);
+            ViewBag.Message = "Hello " + name;
+            ViewBag.NumTimes = numTimes;
+
+            return View();
         }
     }
 }
