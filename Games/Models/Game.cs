@@ -10,7 +10,6 @@ namespace Games.Models
         //Added validation
         [StringLength(60, MinimumLength = 2)]
         public string Title { get; set; }
-        [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
         [Required]
         [StringLength(30)]
         public string Platform { get; set; }
