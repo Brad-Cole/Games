@@ -11,7 +11,7 @@ namespace Games.Models
         public decimal Price { get; set; }
     }
     //for entity
-    public class MovieDBContext : DbContext
+    public class GameDBContext : DbContext
     {
         public DbSet<Game> Games { get; set; }
     }
