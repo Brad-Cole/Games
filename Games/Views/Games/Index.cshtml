@@ -8,6 +8,18 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
+
+    @*added search forms*@
+    @using (Html.BeginForm("Index", "Games", FormMethod.Get))
+    {
+        <p><strong>Search</strong></p>
+    <p>
+        Platform: @Html.DropDownList("gamePlatform", "All")
+        Title: @Html.TextBox("SearchString") <br />
+        <input type="submit" value="Filter" />
+    </p>
+    }
+    
 </p>
 <table class="table">
     <tr>

@@ -15,9 +15,32 @@ namespace Games.Controllers
         private GameDBContext db = new GameDBContext();
 
         // GET: Games
-        public ActionResult Index()
+        public ActionResult Index(string gamePlatform, string searchString)
         {
-            return View(db.Games.ToList());
+            //added search functionality
+            var PlatformLst = new List<string>();
+
+            var PlatformQry = from d in db.Games
+                           orderby d.Platform
+                           select d.Platform;
+
+            PlatformLst.AddRange(PlatformQry.Distinct());
+            ViewBag.gamePlatform = new SelectList(PlatformLst);
+
+            var games = from m in db.Games
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                games = games.Where(s => s.Title.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(gamePlatform))
+            {
+                games = games.Where(x => x.Platform == gamePlatform);
+            }
+
+            return View(games);
         }
 
         // GET: Games/Details/5
